@@ -1,14 +1,27 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Edit from "../views/Edit.vue";
+
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/lectures/:parentId?",
     name: "Home",
-    component: Home
+    component: Home,
+    props: true
+  },
+  {
+    path: '/edit/:id',
+    name: 'Edit',
+    component: Edit,
+    props: true
   },
   {
     path: "/about",

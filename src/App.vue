@@ -1,10 +1,16 @@
+
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/lectures/0">Lectures</router-link> 
+      <!-- <router-link to="/about">About</router-link> -->
     </div>
     <router-view />
+     <!-- Footer -->
+
+    <div class="footer-copyright text-center py-3">
+        &copy; 2021 Copyright: <a href="https://www.nyazjaff.co.uk"> Nyaz Jaff</a>
+    </div>
   </div>
 </template>
 
@@ -29,4 +35,8 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+@import './assets/css/mdb.min.css';
+@import './assets/css/mdb.rtl.min.css';
 </style>
+
