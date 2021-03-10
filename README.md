@@ -12,7 +12,11 @@ npm run serve
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn run build
+yarn firebase deploy 
+Hosting URL: https://bestnation-flutter.web.app
+
+
 ```
 
 ### Lints and fixes files

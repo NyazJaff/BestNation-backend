@@ -40,3 +40,11 @@
 @import './assets/css/mdb.rtl.min.css';
 </style>
 
+<script>
+export default {
+  created () {
+    document.title = 'BestNation : N-Jaff'
+    document.icon = 'assets/logo.png'
+  },
+};
+</script>
