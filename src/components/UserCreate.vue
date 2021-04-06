@@ -52,12 +52,23 @@
       </div>
 
       <div>
-        <b-form-group id="input-group-2" label="PDF URL:" label-for="input-2">
+        <b-form-group id="input-group-2" label="PDF URL:" label-for="pdf-url">
           <b-form-input
-            id="input-2"
+            id="pdf-url"
             type="url"
             v-model="form.pdfURL"
             placeholder="Enter PDF URL"
+          ></b-form-input>
+        </b-form-group>
+      </div>
+
+      <div>
+        <b-form-group id="input-group-2" label="order" label-for="order">
+          <b-form-input
+            id="order"
+            type="text"
+            v-model="form.order"
+            placeholder="Entre the order it should appear"
           ></b-form-input>
         </b-form-group>
       </div>
@@ -90,6 +101,7 @@ export default {
         parentId: this.parentId,
         pdfURL: "",
         type: "",
+        order: 0,
       },
       show: true,
     };

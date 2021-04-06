@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mx-auto w-50 inline">
     <b-alert
       :show="dismissCountDown"
       dismissible
@@ -9,6 +9,19 @@
       ><strong>Saved!</strong> you can create a new one now!
     </b-alert>
     <b-form @submit="onSubmit" v-if="show">
+      <b-form-group label="Creaing?" class="bold" v-slot="{ ariaDescribedby }">
+        <b-form-radio-group
+          id="radio-group-2"
+          v-model="form.type"
+          :aria-describedby="ariaDescribedby"
+          name="radio-sub-component"
+          required
+        >
+          <b-form-radio value="PARENT">Folder</b-form-radio>
+          <b-form-radio value="RECORD">Record</b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+
       <div>
         <b-form-group
           id="input-group-1"
@@ -33,15 +46,15 @@
             v-model="form.mp3URL"
             type="url"
             placeholder="Enter MP3 URL"
-            required
+            :required="form.type == 'RECORD'"
           ></b-form-input>
         </b-form-group>
       </div>
 
       <div>
-        <b-form-group id="input-group-2" label="PDF URL:" label-for="input-2">
+        <b-form-group id="input-group-2" label="PDF URL:" label-for="pdf-url">
           <b-form-input
-            id="input-2"
+            id="pdf-url"
             type="url"
             v-model="form.pdfURL"
             placeholder="Enter PDF URL"
@@ -49,48 +62,35 @@
         </b-form-group>
       </div>
 
-      <b-form-group
-        label="Creaing?"
-        class="mb-5 bold"
-        v-slot="{ ariaDescribedby }"
-      >
-        <b-form-radio-group
-          id="radio-group-2"
-          v-model="form.type"
-          :aria-describedby="ariaDescribedby"
-          name="radio-sub-component"
-          required
-        >
-          <b-form-radio value="PARENT">Folder</b-form-radio>
-          <b-form-radio value="RECORD">Record</b-form-radio>
-        </b-form-radio-group>
-      </b-form-group>
-      <b-button type="submit" variant="primary">Save</b-button>
+      <div>
+        <b-form-group id="input-group-2" label="order" label-for="order">
+          <b-form-input
+            id="order"
+            type="text"
+            v-model="form.order"
+            placeholder="Entre the order it should appear"
+          ></b-form-input>
+        </b-form-group>
+      </div>
+
+      <b-button type="submit" variant="primary">Update</b-button>
     </b-form>
   </div>
 </template> 
 
 
+
 <script>
-import { createUser, updateUser, getUser } from "@/firebase";
+import { updateUser, getUser } from "@/firebase";
 export default {
-  watch: {},
+  props: ['parentId'],
   async mounted() {
-    const currentRecord = await getUser("sd");
+    const currentRecord = await getUser(this.parentId);
     console.log(currentRecord.name);
-    this.form.name = currentRecord.name;
+    this.form = currentRecord;
   },
   setup() {
-    const update = async () => {
-      await updateUser("2AvgYE0eW3CoUdhNQSOT", { ...this.form });
-      this.form.name = "";
-      this.form.email = "";
-    };
-
-    return { update };
   },
-
-  name: "HelloWorld",
   data() {
     return {
       dismissSecs: 3,
@@ -101,9 +101,10 @@ export default {
       form: {
         name: "",
         mp3URL: "",
-        parentId: "0",
+        parentId: this.parentId,
         pdfURL: "",
         type: "",
+        order: 0,
       },
       show: true,
     };
@@ -114,12 +115,13 @@ export default {
     },
     onSubmit(event) {
       event.preventDefault();
-      createUser(this.form);
+      updateUser(this.parentId, this.form);
       this.showAlert();
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
     },
   },
+  
 };
 </script>

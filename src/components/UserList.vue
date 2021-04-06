@@ -7,6 +7,7 @@
           <th scope="col"></th>
           <th scope="col">Name</th>
           <th scope="col">MP3 URL</th>
+          <th scope="col">Order</th>
           <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col"></th>
@@ -20,8 +21,9 @@
               <b-icon-patch-minus v-else></b-icon-patch-minus>
             </div>
           </td>
-          <td>{{ user.name }}</td>
-          <td>{{ user.mp3URL | truncate(50) }}</td>
+          <td>{{ user.name }} </td>
+          <td>{{ user.mp3URL }}</td>
+          <td>{{ user.order }}</td>
           <td>
             <router-link
               v-if="user.type == 'PARENT'"

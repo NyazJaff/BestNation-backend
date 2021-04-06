@@ -41,7 +41,7 @@ export const deleteUser = id => {
 export const useLoadUsers = parentId => {
 
   const users = ref([])
-  const close = usersCollection.where("parentId", "==", parentId).onSnapshot(snapshot => {
+  const close = usersCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
     users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
   onUnmounted(close);

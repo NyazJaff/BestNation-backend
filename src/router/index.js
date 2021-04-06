@@ -19,7 +19,7 @@ const routes = [
     meta: { title: 'Add Record' } 
   },
   {
-    path: '/edit/:id',
+    path: '/edit/:parentId?',
     name: 'Edit',
     component: Edit,
     props: true
