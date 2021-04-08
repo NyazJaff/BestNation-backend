@@ -3,7 +3,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/lectures/0">Lectures</router-link> 
-      <!-- <router-link to="/about">About</router-link> -->
+      | 
+      <router-link to="/texts/0">Texts</router-link> 
     </div>
     <router-view />
      <!-- Footer -->

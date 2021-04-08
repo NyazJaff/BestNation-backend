@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Edit from "../views/Edit.vue";
+import Texts from "../views/Texts.vue";
+import EditText from "../views/texts/EditText.vue";
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
@@ -11,6 +13,21 @@ Vue.use(BootstrapVueIcons)
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/texts/:parentId?",
+    name: "Texts",
+    component: Texts,
+    props: true,
+    meta: { title: 'Add Record' } 
+  },
+  {
+    path: '/edit_text/:parentId?',
+    name: 'Edit Tex6',
+    component: EditText,
+    props: true
+  },
+
+
   {
     path: "/lectures/:parentId?",
     name: "Home",

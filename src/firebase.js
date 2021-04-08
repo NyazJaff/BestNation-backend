@@ -20,6 +20,8 @@ const firebaseApp = firebase.initializeApp(config);
 
 const db = firebaseApp.firestore();
 const usersCollection = db.collection("users");
+const textsCollection = db.collection("texts");
+
 
 export const createUser = user => {
   return usersCollection.add(user);
@@ -47,3 +49,35 @@ export const useLoadUsers = parentId => {
   onUnmounted(close);
   return users;
 };
+
+
+export const useLoadTexts = parentId => {
+
+  const texts = ref([])
+  const close = textsCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
+    texts.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+  })
+  onUnmounted(close);
+  return texts;
+};
+
+
+export const updateText = (id, text) => {
+  return textsCollection.doc(id).update(text);
+};
+
+export const getText = async id => {
+  const text = await textsCollection.doc(id).get();
+  return text.exists ? text.data() : null;
+}
+
+export const deleteText = id => {
+  return textsCollection.doc(id).delete();
+};
+
+export const createText = text => {
+  return textsCollection.add(text);
+};
+
+
+
