@@ -21,8 +21,8 @@
               <b-icon-patch-minus v-else></b-icon-patch-minus>
             </div>
           </td>
-          <td>{{ text.name }} </td>
-          <td>{{ text.body }}</td>
+          <td >{{ text.name }} </td>
+          <td style="width: 50%"> {{ text.body }}</td>
           <td>{{ text.order }}</td>
           <td>
             <router-link
