@@ -44,17 +44,39 @@ export const useLoadUsers = parentId => {
 
   const users = ref([])
   const close = usersCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
-    users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+
+    snapshot.docs.map(doc => {
+      const currentOrder = doc.data().order
+      if (currentOrder !== parseInt(currentOrder, 10)){
+        updateUser(doc.id, {
+          order: parseInt(currentOrder, 10),
+        })       
+      }
+    })
+
+   users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
+
+
+
   onUnmounted(close);
   return users;
 };
-
 
 export const useLoadTexts = parentId => {
 
   const texts = ref([])
   const close = textsCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
+
+    snapshot.docs.map(doc => {
+      const currentOrder = doc.data().order
+      if (currentOrder !== parseInt(currentOrder, 10)){
+        updateText(doc.id, {
+          order: parseInt(currentOrder, 10),
+        })       
+      }
+    })
+    
     texts.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
   onUnmounted(close);

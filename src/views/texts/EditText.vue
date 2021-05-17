@@ -57,7 +57,8 @@
         <b-form-group id="input-group-2" label="order" label-for="order">
           <b-form-input
             id="order"
-            type="text"
+            :number="true"
+            type="number"
             v-model="form.order"
             placeholder="Entre the order it should appear"
           ></b-form-input>
