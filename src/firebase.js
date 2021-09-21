@@ -19,48 +19,48 @@ const config = {
 const firebaseApp = firebase.initializeApp(config);
 
 const db = firebaseApp.firestore();
-const usersCollection = db.collection("users");
+const lecturesCollection = db.collection("users");
 const textsCollection = db.collection("texts");
 
 
-export const createUser = user => {
-  return usersCollection.add(user);
+export const createLecture = lecture => {
+  return lecturesCollection.add(lecture);
 };
 
-export const getUser = async id => {
-  const user = await usersCollection.doc(id).get();
-  return user.exists ? user.data() : null;
+export const getLecture = async id => {
+  const lecture = await lecturesCollection.doc(id).get();
+  return lecture.exists ? lecture.data() : null;
 };
 
-export const updateUser = (id, user) => {
-  return usersCollection.doc(id).update(user);
+export const updateLecture = (id, lecture) => {
+  return lecturesCollection.doc(id).update(lecture);
 };
 
-export const deleteUser = id => {
-  return usersCollection.doc(id).delete();
+export const deleteLecture = id => {
+  return lecturesCollection.doc(id).delete();
 };
 
-export const useLoadUsers = parentId => {
+export const useLoadLectures = parentId => {
 
-  const users = ref([])
-  const close = usersCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
+  const lectures = ref([])
+  const close = lecturesCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
 
     snapshot.docs.map(doc => {
       const currentOrder = doc.data().order
       if (currentOrder !== parseInt(currentOrder, 10)){
-        updateUser(doc.id, {
+        updateLecture(doc.id, {
           order: parseInt(currentOrder, 10),
         })       
       }
     })
 
-   users.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+   lectures.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
 
 
 
   onUnmounted(close);
-  return users;
+  return lectures;
 };
 
 export const useLoadTexts = parentId => {

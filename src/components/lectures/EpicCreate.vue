@@ -81,7 +81,7 @@
 
 
 <script>
-import { createUser } from "@/firebase";
+import { createLecture } from "@/firebase";
 export default {
   props: {
     parentId: String,
@@ -113,7 +113,7 @@ export default {
     },
     onSubmit(event) {
       event.preventDefault();
-      createUser(this.form);
+      createLecture(this.form);
       this.showAlert();
     },
     countDownChanged(dismissCountDown) {

@@ -82,11 +82,11 @@
 
 
 <script>
-import { updateUser, getUser } from "@/firebase";
+import { updateLecture, getLecture } from "@/firebase";
 export default {
   props: ['parentId'],
   async mounted() {
-    const currentRecord = await getUser(this.parentId);
+    const currentRecord = await getLecture(this.parentId);
     console.log(currentRecord.name);
     this.form = currentRecord;
   },
@@ -116,7 +116,7 @@ export default {
     },
     onSubmit(event) {
       event.preventDefault();
-      updateUser(this.parentId, this.form);
+      updateLecture(this.parentId, this.form);
       this.showAlert();
     },
     countDownChanged(dismissCountDown) {
