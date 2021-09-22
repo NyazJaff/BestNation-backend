@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import TextsCreate from "../components/texts/TextsCreate.vue";
-import TextsList from '../components/texts/TextsList.vue';
+import TextsCreate from "../../components/texts/TextsCreate.vue";
+import TextsList from '../../components/texts/TextsList.vue';
 
 
 export default {

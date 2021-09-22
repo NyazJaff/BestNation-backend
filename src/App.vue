@@ -5,6 +5,8 @@
       <router-link to="/lectures/0">Lectures</router-link> 
       | 
       <router-link to="/texts/0">Texts</router-link> 
+	  | 
+      <router-link to="/books/0">Books</router-link> 
     </div>
     <router-view />
      <!-- Footer -->

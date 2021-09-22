@@ -19,8 +19,9 @@ const config = {
 const firebaseApp = firebase.initializeApp(config);
 
 const db = firebaseApp.firestore();
-const lecturesCollection = db.collection("users");
-const textsCollection = db.collection("texts");
+export const lecturesCollection = db.collection("users");
+export const booksCollection = db.collection("books_x");
+export const textsCollection = db.collection("texts");
 
 
 export const createLecture = lecture => {
@@ -56,12 +57,47 @@ export const useLoadLectures = parentId => {
 
    lectures.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
   })
-
-
-
   onUnmounted(close);
   return lectures;
 };
+
+// 
+export const createBook = (collection, book) => {
+	return collection.add(book);
+  };
+  
+  export const getBook = async id => {
+	const book = await booksCollection.doc(id).get();
+	return book.exists ? book.data() : null;
+  };
+  
+  export const updateBook = (id, book) => {
+	return booksCollection.doc(id).update(book);
+  };
+  
+  export const deleteBook = id => {
+	return booksCollection.doc(id).delete();
+  };
+  
+  export const useLoadBooks = parentId => {
+  
+	const books = ref([])
+	const close = booksCollection.where("parentId", "==", parentId).orderBy('order').onSnapshot(snapshot => {
+	  snapshot.docs.map(doc => {
+		const currentOrder = doc.data().order
+		if (currentOrder !== parseInt(currentOrder, 10)){
+		  updateBook(doc.id, {
+			order: parseInt(currentOrder, 10),
+		  })       
+		}
+	  })
+  
+	 books.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+	})
+	onUnmounted(close);
+	return books;
+  };
+// 
 
 export const useLoadTexts = parentId => {
 

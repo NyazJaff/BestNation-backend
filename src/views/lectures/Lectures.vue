@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import EpicCreate from "../components/lectures/EpicCreate.vue";
-import EpicList from '../components/lectures/EpicList.vue';
+import EpicCreate from "../../components/lectures/EpicCreate.vue";
+import EpicList from '../../components/lectures/EpicList.vue';
 
 
 export default {

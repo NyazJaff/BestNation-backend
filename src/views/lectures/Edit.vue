@@ -6,7 +6,7 @@
       fade
       variant="success"
       @dismiss-count-down="countDownChanged"
-      ><strong>Saved!</strong> you can create a new one now!
+      ><strong>Saved!</strong> Update done!
     </b-alert>
     <b-form @submit="onSubmit" v-if="show">
       <b-form-group label="Creaing?" class="bold" v-slot="{ ariaDescribedby }">
