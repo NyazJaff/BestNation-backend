@@ -6,6 +6,8 @@ import AllLectures from "../views/lectures/Lectures";
 import EditLectures from "../views/lectures/Edit.vue";
 import AllBooks from "../views/books/Books.vue";
 import EditBooks from "../views/books/Edit.vue";
+import EditConfigs from "../views/configs/Edit.vue";
+import AllConfigs from "../views/configs/Configs.vue";
 
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 Vue.use(BootstrapVue)
@@ -56,6 +58,21 @@ const routes = [
     component: EditBooks,
     props: true
   },
+
+  {
+    path: "/configs",
+    name: "All Configs",
+    component: AllConfigs,
+    props: true,
+    meta: { title: 'All Configs' } 
+  },
+  {
+    path: '/configs/edit/:parentId?',
+    name: 'Edit Configs',
+    component: EditConfigs,
+    props: true
+  },
+  
 //   {
 //     path: "/about",
 //     name: "About",

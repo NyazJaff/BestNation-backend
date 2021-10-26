@@ -7,6 +7,8 @@
       <router-link to="/texts/0">Texts</router-link> 
 	  | 
       <router-link to="/books/0">Books</router-link> 
+	  |
+	  <router-link to="/configs">Configs</router-link> 
     </div>
     <router-view />
      <!-- Footer -->

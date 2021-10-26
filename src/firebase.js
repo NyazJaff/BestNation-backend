@@ -22,7 +22,7 @@ const db = firebaseApp.firestore();
 export const lecturesCollection = db.collection("users");
 export const booksCollection = db.collection("books_x");
 export const textsCollection = db.collection("texts");
-
+export const configsCollection = db.collection("config");
 
 export const createLecture = lecture => {
   return lecturesCollection.add(lecture);
@@ -139,3 +139,20 @@ export const createText = text => {
 
 
 
+export const getAllConfigs = () => {
+	const configs = ref([])
+	const close = configsCollection.onSnapshot(snapshot => {
+	  configs.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+	})
+	onUnmounted(close);
+	return configs;
+  };
+
+  export const getById = async (collection, id) => {
+	const data = await collection.doc(id).get();
+	return data.exists ? data.data() : null;
+  };
+  
+  export const updateRecord = (collection, id, text) => {
+	return collection.doc(id).update(text);
+  };
