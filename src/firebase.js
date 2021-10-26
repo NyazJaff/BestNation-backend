@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 
 Vue.use(VueCompositionAPI)
 import VueCompositionAPI from '@vue/composition-api'
@@ -16,7 +17,7 @@ const config = {
   measurementId: "G-9WL7RBRB2C"
 };
 
-const firebaseApp = firebase.initializeApp(config);
+export const firebaseApp = firebase.initializeApp(config);
 
 const db = firebaseApp.firestore();
 export const lecturesCollection = db.collection("users");
