@@ -21,14 +21,11 @@
               <b-icon-patch-minus v-else></b-icon-patch-minus>
             </div>
           </td>
-          <td>{{ book.name }} </td>
+          <td>{{ book.name }}</td>
           <td>{{ book.pdfURL }}</td>
           <td>{{ book.order }}</td>
           <td>
-            <router-link
-              v-if="book.type == 'PARENT'"
-              :to="`/books/${book.id}`"
-            >
+            <router-link v-if="book.type == 'PARENT'" :to="`/books/${book.id}`">
               <b-button variant="outline-primary">
                 <b-icon icon="arrow-right"></b-icon>
               </b-button>
@@ -52,19 +49,17 @@
   </div>
 </template>
 
-
 <script>
 import { useLoadBooks, deleteBook, getBook } from "@/firebase";
 
 export default {
-  methods: {
-  },
+  methods: {},
   props: {
-    parentId: String,
+    parentId: String
   },
   data() {
     return {
-      currentRecordTitle: "",
+      currentRecordTitle: ""
     };
   },
   async mounted() {
@@ -74,6 +69,6 @@ export default {
   setup(props) {
     const books = useLoadBooks(props.parentId);
     return { books, deleteBook };
-  },
+  }
 };
 </script>

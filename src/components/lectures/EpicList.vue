@@ -21,7 +21,7 @@
               <b-icon-patch-minus v-else></b-icon-patch-minus>
             </div>
           </td>
-          <td>{{ lecture.name }} </td>
+          <td>{{ lecture.name }}</td>
           <td>{{ lecture.mp3URL }}</td>
           <td>{{ lecture.order }}</td>
           <td>
@@ -42,7 +42,10 @@
             </router-link>
           </td>
           <td>
-            <b-button @click="deleteLecture(lecture.id)" variant="outline-primary">
+            <b-button
+              @click="deleteLecture(lecture.id)"
+              variant="outline-primary"
+            >
               <b-icon variant="danger" scale="1.5" icon="trash"></b-icon>
             </b-button>
           </td>
@@ -52,19 +55,17 @@
   </div>
 </template>
 
-
 <script>
 import { useLoadLectures, deleteLecture, getLecture } from "@/firebase";
 
 export default {
-  methods: {
-  },
+  methods: {},
   props: {
-    parentId: String,
+    parentId: String
   },
   data() {
     return {
-      currentRecordTitle: "",
+      currentRecordTitle: ""
     };
   },
   async mounted() {
@@ -74,6 +75,6 @@ export default {
   setup(props) {
     const lectures = useLoadLectures(props.parentId);
     return { lectures, deleteLecture };
-  },
+  }
 };
 </script>

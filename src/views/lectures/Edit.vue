@@ -77,21 +77,18 @@
       <b-button type="submit" variant="primary">Update</b-button>
     </b-form>
   </div>
-</template> 
-
-
+</template>
 
 <script>
 import { updateLecture, getLecture } from "@/firebase";
 export default {
-  props: ['parentId'],
+  props: ["parentId"],
   async mounted() {
     const currentRecord = await getLecture(this.parentId);
     console.log(currentRecord.name);
     this.form = currentRecord;
   },
-  setup() {
-  },
+  setup() {},
   data() {
     return {
       dismissSecs: 3,
@@ -105,9 +102,9 @@ export default {
         parentId: this.parentId,
         pdfURL: "",
         type: "",
-        order: 0,
+        order: 0
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -121,8 +118,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
-  
+    }
+  }
 };
 </script>

@@ -66,14 +66,13 @@
       <b-button type="submit" variant="primary">Save</b-button>
     </b-form>
   </div>
-</template> 
-
+</template>
 
 <script>
 import { createText } from "@/firebase";
 export default {
   props: {
-    parentId: String,
+    parentId: String
   },
   setup() {},
 
@@ -90,9 +89,9 @@ export default {
         body: "",
         parentId: this.parentId,
         type: "",
-        order: 0,
+        order: 0
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -106,7 +105,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
+    }
+  }
 };
 </script>

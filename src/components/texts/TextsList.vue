@@ -21,14 +21,11 @@
               <b-icon-patch-minus v-else></b-icon-patch-minus>
             </div>
           </td>
-          <td >{{ text.name }} </td>
-          <td style="width: 50%"> {{ text.body }}</td>
+          <td>{{ text.name }}</td>
+          <td style="width: 50%">{{ text.body }}</td>
           <td>{{ text.order }}</td>
           <td>
-            <router-link
-              v-if="text.type == 'PARENT'"
-              :to="`/texts/${text.id}`"
-            >
+            <router-link v-if="text.type == 'PARENT'" :to="`/texts/${text.id}`">
               <b-button variant="outline-primary">
                 <b-icon icon="arrow-right"></b-icon>
               </b-button>
@@ -52,17 +49,16 @@
   </div>
 </template>
 
-
 <script>
 import { useLoadTexts, deleteText, getText } from "@/firebase";
 
 export default {
   props: {
-    parentId: String,
+    parentId: String
   },
   data() {
     return {
-      currentRecordTitle: "",
+      currentRecordTitle: ""
     };
   },
   async mounted() {
@@ -72,6 +68,6 @@ export default {
   setup(props) {
     const Texts = useLoadTexts(props.parentId);
     return { Texts, deleteText };
-  },
+  }
 };
 </script>

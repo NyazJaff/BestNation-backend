@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="mx-auto w-50 inline">
     <b-alert
@@ -68,22 +66,18 @@
       <b-button type="submit" variant="primary">Save</b-button>
     </b-form>
   </div>
-</template> 
-
-
-
+</template>
 
 <script>
 import { updateText, getText } from "@/firebase";
 export default {
-  props: ['parentId'],
+  props: ["parentId"],
   async mounted() {
     const currentRecord = await getText(this.parentId);
     console.log(currentRecord.name);
     this.form = currentRecord;
   },
-  setup() {
-  },
+  setup() {},
   data() {
     return {
       dismissSecs: 3,
@@ -96,9 +90,9 @@ export default {
         body: "",
         parentId: this.parentId,
         type: "",
-        order: 0,
+        order: 0
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -112,8 +106,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
-  
+    }
+  }
 };
 </script>

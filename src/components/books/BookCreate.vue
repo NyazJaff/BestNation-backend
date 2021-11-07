@@ -38,7 +38,7 @@
           ></b-form-input>
         </b-form-group>
       </div>
-<!-- 
+      <!-- 
       <div>
         <b-form-group id="input-group-2" label="MP3 URL:" label-for="input-2">
           <b-form-input
@@ -58,7 +58,7 @@
             type="url"
             v-model="form.pdfURL"
             placeholder="Enter PDF URL"
-			:required="form.type == 'RECORD'"
+            :required="form.type == 'RECORD'"
           ></b-form-input>
         </b-form-group>
       </div>
@@ -78,14 +78,13 @@
       <b-button type="submit" variant="primary">Save</b-button>
     </b-form>
   </div>
-</template> 
-
+</template>
 
 <script>
-import { createBook, booksCollection} from "@/firebase";
+import { createBook, booksCollection } from "@/firebase";
 export default {
   props: {
-    parentId: String,
+    parentId: String
   },
   setup() {},
 
@@ -103,9 +102,9 @@ export default {
         parentId: this.parentId,
         pdfURL: "",
         type: "",
-        order: 0,
+        order: 0
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -119,7 +118,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
+    }
+  }
 };
 </script>

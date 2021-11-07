@@ -77,14 +77,13 @@
       <b-button type="submit" variant="primary">Save</b-button>
     </b-form>
   </div>
-</template> 
-
+</template>
 
 <script>
 import { createLecture } from "@/firebase";
 export default {
   props: {
-    parentId: String,
+    parentId: String
   },
   setup() {},
 
@@ -102,9 +101,9 @@ export default {
         parentId: this.parentId,
         pdfURL: "",
         type: "",
-        order: 0,
+        order: 0
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -118,7 +117,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
+    }
+  }
 };
 </script>

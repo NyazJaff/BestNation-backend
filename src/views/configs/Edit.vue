@@ -9,8 +9,7 @@
       ><strong>Saved!</strong> Update done!
     </b-alert>
     <b-form @submit="onSubmit" v-if="show">
-
-		<div>
+      <div>
         <b-form-group id="input-group-2" label="Title:" label-for="title">
           <b-form-input
             id="title"
@@ -20,7 +19,7 @@
           ></b-form-input>
         </b-form-group>
       </div>
-	  <div>
+      <div>
         <b-form-group id="input-group-2" label="url:" label-for="url">
           <b-form-input
             id="url"
@@ -30,7 +29,6 @@
           ></b-form-input>
         </b-form-group>
       </div>
-
 
       <div>
         <b-form-group id="input-group-2" label="Key:" label-for="key">
@@ -42,7 +40,7 @@
           ></b-form-input>
         </b-form-group>
       </div>
-	  <div>
+      <div>
         <b-form-group id="input-group-2" label="Value:" label-for="value">
           <b-form-input
             id="value"
@@ -53,22 +51,20 @@
         </b-form-group>
       </div>
 
-
       <b-button type="submit" variant="primary">Update</b-button>
     </b-form>
   </div>
-</template> 
+</template>
 
 <script>
-import { updateRecord, getById, configsCollection  } from "@/firebase";
+import { updateRecord, getById, configsCollection } from "@/firebase";
 export default {
-  props: ['parentId'],
+  props: ["parentId"],
   async mounted() {
     const currentRecord = await getById(configsCollection, this.parentId);
     this.form = currentRecord;
   },
-  setup() {
-  },
+  setup() {},
   data() {
     return {
       dismissSecs: 3,
@@ -80,9 +76,9 @@ export default {
         key: "",
         value: "",
         title: "",
-		url: "",
+        url: ""
       },
-      show: true,
+      show: true
     };
   },
   methods: {
@@ -96,7 +92,7 @@ export default {
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
-    },
-  },
+    }
+  }
 };
 </script>
